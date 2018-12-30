@@ -10,7 +10,7 @@ export interface INote
 @Injectable()
 export class NotesService
 {
-    static notes: INote[] = 
+    static notes: Array<INote> = 
     [
         {
             name: 'A',
@@ -18,6 +18,7 @@ export class NotesService
         }, 
         {
             name: 'A#',
+            alternativeName: 'Bb',
             isNatural: false,
         },
         {
@@ -30,6 +31,7 @@ export class NotesService
         },
         {
             name: 'C#',
+            alternativeName: 'Db',
             isNatural: false,
         },
         {
@@ -38,6 +40,7 @@ export class NotesService
         },
         {
             name: 'D#',
+            alternativeName: 'Eb',
             isNatural: false,
         },
         {
@@ -50,6 +53,7 @@ export class NotesService
         },
         {
             name: 'F#',
+            alternativeName: 'Gb',
             isNatural: false,
         },
         {
@@ -58,6 +62,7 @@ export class NotesService
         },
         {
             name: 'G#',
+            alternativeName: 'Ab',
             isNatural: false
         }
     ];

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotesService } from 'src/services/notes.service';
+import { IntervalsService } from 'src/services/intervals.service';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { NotesService } from 'src/services/notes.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [NotesService],
+  providers: [NotesService, IntervalsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
