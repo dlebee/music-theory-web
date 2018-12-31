@@ -11,6 +11,17 @@ export interface INote
 @Injectable()
 export class NotesService
 {
+    getNote(noteName: string): Observable<INote> {
+        return Observable.create(o => {
+            let note = NotesService.notes.find(n => n.name == noteName || n.alternativeName == noteName);
+            if (note)
+                o.next(note);
+            else
+                o.error(`could not find a note called ${noteName}`);
+            o.complete();
+        });
+    }
+
     getNotes(): Observable<INote[]> {
         return Observable.create(o => {
             o.next(NotesService.notes);

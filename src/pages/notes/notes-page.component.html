@@ -11,7 +11,11 @@
             <tr *ngFor="let n of notes">
                 <td>{{ n.name }} <span class="font-italic font-weight-light">{{ n.alternativeName }}</span></td>
                 <td [class.font-weight-bold]="n.isNatural">{{ n.isNatural ? 'yes' : 'no' }}</td>
-                <td></td>
+                <td>
+                    <div class="button-group">
+                        <button class="btn btn-primary btn-sm" [routerLink]="'note/' + n.name">intervals</button>
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>

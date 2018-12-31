@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export interface IInterval
 {
-    intervalSymbol: string;
+    symbol: string;
     name: string;
     distanceInHalfTones: number;
 }
@@ -11,22 +12,29 @@ export interface IInterval
 export class IntervalsService
 {  
     static Intervals: Array<IInterval> = [
-        { distanceInHalfTones: 0, name: 'tonic', intervalSymbol: '1'},
-        { distanceInHalfTones: 1, name: 'minor second', intervalSymbol: 'b2'},
-        { distanceInHalfTones: 2, name: 'major second', intervalSymbol: '2'},
-        { distanceInHalfTones: 3, name: 'minor third', intervalSymbol: 'b3'},
-        { distanceInHalfTones: 4, name: 'major third', intervalSymbol: '3'},
-        { distanceInHalfTones: 5, name: 'perfect fourth', intervalSymbol: '4'},
-        { distanceInHalfTones: 6, name: 'tritone', intervalSymbol: '4# / b5'},
-        { distanceInHalfTones: 7, name: 'perfect fifth', intervalSymbol: '5'},
-        { distanceInHalfTones: 8, name: 'minor sixth', intervalSymbol: 'b6'},
-        { distanceInHalfTones: 9, name: 'major sixth', intervalSymbol: '6'},
-        { distanceInHalfTones: 10, name: 'minor seventh', intervalSymbol: 'b7'},
-        { distanceInHalfTones: 11, name: 'major seventh', intervalSymbol: '7'},
-        { distanceInHalfTones: 12, name: 'octave', intervalSymbol: '8'},
+        { distanceInHalfTones: 0, name: 'tonic', symbol: '1'},
+        { distanceInHalfTones: 1, name: 'minor second', symbol: 'b2'},
+        { distanceInHalfTones: 2, name: 'major second', symbol: '2'},
+        { distanceInHalfTones: 3, name: 'minor third', symbol: 'b3'},
+        { distanceInHalfTones: 4, name: 'major third', symbol: '3'},
+        { distanceInHalfTones: 5, name: 'perfect fourth', symbol: '4'},
+        { distanceInHalfTones: 6, name: 'tritone', symbol: '4# / b5'},
+        { distanceInHalfTones: 7, name: 'perfect fifth', symbol: '5'},
+        { distanceInHalfTones: 8, name: 'minor sixth', symbol: 'b6'},
+        { distanceInHalfTones: 9, name: 'major sixth', symbol: '6'},
+        { distanceInHalfTones: 10, name: 'minor seventh', symbol: 'b7'},
+        { distanceInHalfTones: 11, name: 'major seventh', symbol: '7'},
+        { distanceInHalfTones: 12, name: 'octave', symbol: '8'},
     ];
 
     constructor() {
 
+    }
+
+    getIntervals() : Observable<Array<IInterval>>{
+        return Observable.create(o => {
+            o.next(IntervalsService.Intervals);
+            o.complete();
+        });
     }
 }

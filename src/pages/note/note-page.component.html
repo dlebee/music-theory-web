@@ -1,0 +1,23 @@
+<div class="container mt-2">
+    <h1>{{ note.name }} <span class="font-italic font-weight-light">{{ note.alternativeName }}</span></h1>
+    <hr>
+
+    <table class="table table-bordered table-sm table-striped">
+        <thead>
+            <tr>
+                <th>Distance In half tones</th>
+                <th>Note</th>
+                <th>Interval Name</th>
+                <th>Interval Symbol</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ni of noteIntervals">
+                <td>{{ni.distanceInHalfTones}}</td>
+                <td>{{ni.note.name}}<span class="font-italic font-weight-light">{{ni.note.alternativeName}}</span></td>
+                <td>{{ni.name}}</td>
+                <td>{{ni.symbol}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
