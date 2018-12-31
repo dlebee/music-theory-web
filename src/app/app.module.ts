@@ -10,8 +10,9 @@ import { NoteIntervalService } from 'src/services/note-interval.service';
 import { NotePageComponent } from 'src/pages/note/note-page.component';
 import { GuitarService } from 'src/services/guitar-service';
 import { TestPageComponent } from 'src/pages/test/test-page.component';
+import { ChordsService } from 'src/services/chords-service';
 
-const services = [NotesService, IntervalsService, NoteIntervalService, GuitarService];
+const services = [NotesService, IntervalsService, NoteIntervalService, GuitarService, ChordsService];
 const components = [NotesPageComponent, NotePageComponent, TestPageComponent];
 
 @NgModule({

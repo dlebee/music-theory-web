@@ -20,6 +20,7 @@ export class GuitarService
                     notes => {
 
                         let guitar: IGuitar = { 
+                            fretCount: fretCount,
                             strings: []
                         };
 

@@ -22,4 +22,27 @@
             </tr>
         </tbody>
     </table>
+
+    <h5>Chords</h5>
+    <hr>
+    <table class="table table-bordered table-striped table-sm">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Key</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let c of chords">
+                <td>{{ c.title }}</td>
+                <td>{{ c.key.name }}</td>
+                <td>
+                    <span class="badge badge-secondary mr-1" *ngFor="let n of c.notes">
+                        {{ n.name }}
+                    </span>
+                </td>
+            </tr>
+        </tbody>        
+    </table>
 </div>
