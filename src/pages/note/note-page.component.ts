@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from '@angular/router';
-import { NotesService, INote } from 'src/services/notes.service';
-import { NoteIntervalService, INoteInterval } from 'src/services/note-interval.service';
+import { NotesService, } from 'src/services/notes.service';
+import { NoteIntervalService } from 'src/services/note-interval.service';
+import { INote } from 'src/models/note';
+import { INoteInterval } from 'src/models/note-interval';
 
 @Component({
     templateUrl: './note-page.component.html',

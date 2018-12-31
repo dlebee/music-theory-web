@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-export interface INote
-{
-    name: string;
-    alternativeName?: string;
-    isNatural: boolean;
-}
+import { INote } from 'src/models/note';
 
 @Injectable()
 export class NotesService

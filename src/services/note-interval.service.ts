@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { NotesService, INote } from './notes.service';
-import { IntervalsService, IInterval } from './intervals.service';
 import { Observable, combineLatest } from 'rxjs';
-
-export interface INoteInterval extends IInterval
-{
-    note: INote;
-}
+import { NotesService } from './notes.service';
+import { IntervalsService } from './intervals.service';
+import { INoteInterval } from 'src/models/note-interval';
+import { INote } from 'src/models/note';
 
 @Injectable()
 export class NoteIntervalService
@@ -16,21 +13,29 @@ export class NoteIntervalService
 
     }
 
+    nextNote(notes: INote[], note: INote) : INote {
+
+        if (notes.length == 0)
+            throw new Error('cannot send an array of notes that is empty.');
+
+        let noteIndex = notes.indexOf(note);
+        if (noteIndex+1 < notes.length)
+            return notes[noteIndex+1];
+
+        return notes[0];
+    }
+
     getNoteIntervals(note: INote) : Observable<INoteInterval[]>
     {
         return Observable.create(o => {
             combineLatest(this.notesService.getNotes(), this.intervalService.getIntervals(), (notes, intervals) => ({notes, intervals}))
                 .subscribe(pair => {
-                    
-                    let indexOfNote = pair.notes.findIndex(n => n.name == note.name);
+                
+                    let currentNote = pair.notes.find(t => t.name == note.name);
+
                     let noteIntervals = pair.intervals.map(i => {
-                        let noteInterval: INoteInterval = { ... i, note: pair.notes[indexOfNote] };
-
-                        // resolve next note.
-                        indexOfNote++;
-                        if (indexOfNote == pair.notes.length)
-                            indexOfNote = 0;
-
+                        let noteInterval: INoteInterval = { ... i, note: currentNote };
+                        currentNote = this.nextNote(pair.notes, currentNote);
                         return noteInterval;
                     });
 

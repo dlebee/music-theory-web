@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-export interface IInterval
-{
-    symbol: string;
-    name: string;
-    distanceInHalfTones: number;
-}
+import { IInterval } from 'src/models/interval';
 
 @Injectable()
 export class IntervalsService
