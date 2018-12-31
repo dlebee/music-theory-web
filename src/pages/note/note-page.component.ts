@@ -28,7 +28,6 @@ export class NotePageComponent implements OnInit
 
     ngOnInit() {
         
-        this.chords = [];
         let noteName = this.route.snapshot.paramMap.get('note');
         this.noteService.getNote(noteName)
             .subscribe(
@@ -40,8 +39,7 @@ export class NotePageComponent implements OnInit
                             this.noteIntervals = noteIntervals;
                         });
 
-                    this.chordsService.majorChord(note).subscribe(c => this.chords.push(c));
-                    this.chordsService.minorChord(note).subscribe(c => this.chords.push(c));
+                    this.chordsService.allChords(note).subscribe(chords => this.chords = chords);
                 },
                 err => alert(err)
             );
