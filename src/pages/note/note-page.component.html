@@ -9,6 +9,7 @@
                 <th>Note</th>
                 <th>Interval Name</th>
                 <th>Interval Symbol</th>
+                <th>Natural note</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +18,7 @@
                 <td>{{ni.note.name}}<span class="font-italic font-weight-light">{{ni.note.alternativeName}}</span></td>
                 <td>{{ni.name}}</td>
                 <td>{{ni.symbol}}</td>
+                <td [class.font-weight-bold]="ni.note.isNatural">{{ni.note.isNatural ? 'yes' : 'no' }}</td>
             </tr>
         </tbody>
     </table>
