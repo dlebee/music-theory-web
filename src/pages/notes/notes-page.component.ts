@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NotesService } from 'src/services/notes.service';
+import { NotesService, INote } from 'src/services/notes.service';
 
 
 @Component({
@@ -8,11 +8,14 @@ import { NotesService } from 'src/services/notes.service';
 })
 export class NotesPageComponent implements OnInit
 {
+    notes: Array<INote>;
     constructor(private notesService: NotesService) {
 
     }
 
     ngOnInit(): void {
-
+        this.notesService
+            .getNotes()
+            .subscribe(notes => this.notes = notes);
     }
 }

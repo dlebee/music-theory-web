@@ -1,0 +1,18 @@
+<div class="container mt-2">
+    <table class="table table-bordered table-striped table-sm">
+        <thead>
+            <tr>
+                <th>Note</th>
+                <th>Natural</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let n of notes">
+                <td>{{ n.name }} <span class="font-italic font-weight-light">{{ n.alternativeName }}</span></td>
+                <td [class.font-weight-bold]="n.isNatural">{{ n.isNatural ? 'yes' : 'no' }}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
