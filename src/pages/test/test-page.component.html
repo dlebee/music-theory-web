@@ -1,12 +1,4 @@
 
-<div class="container mt-2">
-    <table class="table table-bordered" *ngIf="guitar">
-        <tr>
-            <th class="text-center" *ngFor="let item of [].constructor(guitar.fretCount+1); let i = index">{{ i }}</th>
-        </tr>
-        <tr *ngFor="let s of guitar.strings">
-            <th class="text-center">{{ s.openString.name }}</th>
-            <td class="text-center" *ngFor="let f of s.frets" >{{ f.name }}</td>
-        </tr>
-    </table>
+<div class="mt-2 container" style="width: 80%; max-width: none;">
+    <guitar [guitar]="guitar"></guitar>
 </div>

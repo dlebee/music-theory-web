@@ -1,0 +1,17 @@
+<table *ngIf="guitar">
+
+    <thead>
+        <tr>
+            <th *ngFor="let item of [].constructor(guitar.fretCount+1); let i = index" [style.width]="getFretWidth(i)">{{ i }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of guitar.strings">
+            <th>{{ s.openString.name }}</th>
+            <td *ngFor="let f of s.frets">
+                <hr [style.border-top-width]="getStringWidth(s)">
+            </td>
+            <td class="bridge"></td>
+        </tr>
+    </tbody>
+</table>

@@ -12,7 +12,7 @@ import { IChord } from 'src/models/chord';
 export class TestPageComponent implements OnInit
 {
     guitar: IGuitar;
-    debug: IChord;
+    
     constructor(private guitarService: GuitarService, private notesService: NotesService, private chordsService: ChordsService) {
 
     }
@@ -20,13 +20,6 @@ export class TestPageComponent implements OnInit
     ngOnInit() {
         this.guitarService.standardTunningGuitar()
             .subscribe(g => this.guitar = g);
-
-        this.notesService.getNote('A').subscribe(aNote => {
-            this.chordsService.majorChord(aNote).subscribe(aMajorChord => {
-                this.debug = aMajorChord;
-            });
-        });
-
         
     }
 }
