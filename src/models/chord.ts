@@ -8,7 +8,10 @@ export enum ChordTypes {
     MinorSeventh = "MinorSeventh",
     DominantSeventh = "DominantSeventh",
     Sus2 = "Sus2",
-    Sus4 = "Sus4"
+    Sus4 = "Sus4",
+    Augmented = "Augmented",
+    DominantNinth = "DominantNinth",
+    MajorEleventh = "MajorEleventh"
 }
 
 export interface IChordDefinition {

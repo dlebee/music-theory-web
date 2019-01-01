@@ -56,6 +56,24 @@ export class ChordsService
             title: 'Sus4',
             description: 'Sus4 Chords, like Sus2 chords, sound bright and nervous.',
             semitones: [0, 5, 7]
+        },
+        {
+            type: ChordTypes.Augmented,
+            title: 'Augmented',
+            description: 'Augmented chords sound anxious and suspenseful.',
+            semitones: [0, 4, 8]
+        },
+        {
+            type: ChordTypes.DominantNinth,
+            title: 'Dominant Ninth',
+            description: 'common in jazz, funk, and R&B',
+            semitones: [0, 4, 7, 10, 14]
+        },
+        {
+            type: ChordTypes.MajorEleventh,
+            title: 'Major Eleventh',
+            description: 'common in jazz, funk, and R&B',
+            semitones: [0, 4, 7, 11, 14, 17]
         }
     ];
 
@@ -94,7 +112,15 @@ export class ChordsService
             this.noteIntervalService.getNoteIntervals(note)
                 .subscribe(
                     noteIntervals => {
-                        let notes = chordDefinition.semitones.map(s => noteIntervals.find(ni => ni.distanceInHalfTones == s).note);
+
+
+
+                        let notes = chordDefinition.semitones.map(s => {
+                            let finalSemiTone = this.safeSemiTone(s);
+                            let noteInterval = noteIntervals.find(ni => ni.distanceInHalfTones == finalSemiTone);
+                            return noteInterval.note;
+                        });
+
                         let nextResult: IChord = {
                             key: note,
                             type: type,
@@ -111,5 +137,9 @@ export class ChordsService
                 );
         });
         
+    }
+    
+    protected safeSemiTone(semiTone: number): number {
+        return semiTone <= 12 ? semiTone : semiTone-12;
     }
 }
