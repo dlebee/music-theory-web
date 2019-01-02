@@ -1,7 +1,7 @@
 import { Component, Input } from "@angular/core";
-import { IGuitar } from 'src/models/Guitar';
-import { IGuitarString } from 'src/models/guitar-string';
-import { INote } from 'src/models/note';
+import { IGuitar } from '../models/Guitar';
+import { IGuitarString } from '../models/guitar-string';
+import { INote } from '../models/note';
 
 @Component({
     selector: 'guitar',
