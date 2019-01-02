@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { INote } from 'src/models/note';
 
 @Injectable()
@@ -17,10 +17,7 @@ export class NotesService
     }
 
     getNotes(): Observable<INote[]> {
-        return Observable.create(o => {
-            o.next(NotesService.notes);
-            o.complete();
-        });
+        return of(NotesService.notes);
     }
 
     static notes: Array<INote> = 

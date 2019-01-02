@@ -6,9 +6,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let s of guitar.strings">
-            <th>{{ s.openString.name }}</th>
+        <tr *ngFor="let s of finalStrings">
+            <th [class.font-weight-bold]="isNoteAskedFor(s.openString)" [class.text-primary]="isNoteAskedFor(s.openString)">{{ s.openString.name }}</th>
             <td *ngFor="let f of s.frets">
+                <div class="badge" [class.badge-light]="!isNoteAskedFor(f)" [class.badge-primary]="isNoteAskedFor(f)" *ngIf="showThisNote(f)">{{ f.name}}</div>
                 <hr [style.border-top-width]="getStringWidth(s)">
             </td>
             <td class="bridge"></td>

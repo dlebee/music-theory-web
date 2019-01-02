@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,9 +13,10 @@ import { GuitarService } from 'src/services/guitar-service';
 import { TestPageComponent } from 'src/pages/test/test-page.component';
 import { ChordsService } from 'src/services/chords-service';
 import { GuitarComponent } from 'src/components/guitar.component';
+import { ChordsPageComponent } from 'src/pages/chords/chords-page.component';
 
 const services = [NotesService, IntervalsService, NoteIntervalService, GuitarService, ChordsService];
-const components = [NotesPageComponent, NotePageComponent, TestPageComponent, GuitarComponent];
+const components = [NotesPageComponent, NotePageComponent, TestPageComponent, GuitarComponent, ChordsPageComponent];
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ const components = [NotesPageComponent, NotePageComponent, TestPageComponent, Gu
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [services],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { IInterval } from 'src/models/interval';
 
 @Injectable()
@@ -26,9 +26,6 @@ export class IntervalsService
     }
 
     getIntervals() : Observable<Array<IInterval>>{
-        return Observable.create(o => {
-            o.next(IntervalsService.Intervals);
-            o.complete();
-        });
+        return of(IntervalsService.Intervals);
     }
 }

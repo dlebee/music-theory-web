@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { NotesService } from './notes.service';
 import { NoteIntervalService } from './note-interval.service';
 import { INote } from 'src/models/note';
-import { Observable, zip } from 'rxjs';
+import { Observable, zip, of } from 'rxjs';
 import { IChord, ChordTypes, IChordDefinition } from 'src/models/chord';
 
 @Injectable()
@@ -80,6 +80,10 @@ export class ChordsService
     constructor(private notesService: NotesService, private noteIntervalService: NoteIntervalService) 
     {
 
+    }
+
+    getDefinitions() : Observable<IChordDefinition[]> {
+        return of(this.definitions);
     }
 
     majorChord(note: INote) : Observable<IChord> {

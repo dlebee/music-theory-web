@@ -1,0 +1,40 @@
+
+
+<div class="container" style="max-width: 70%;">
+    <button class="btn btn-primary btn-sm mt-2" (click)="newChord()">Add a chord</button>
+    <button class="btn btn-primary btn-sm mt-2" (click)="refreshChords()">Refresh chords</button>
+    <div class="mt-1">I prefer my tabs reversed: <input type="checkbox" [(ngModel)]="guitarsReversed" /></div>
+    <div class="mt-1">I want to see all notes: <input type="checkbox" [(ngModel)]="showAllNotes" /></div>
+    <table class="table table-sm table-bordered" style="width: auto;">
+        <thead>
+            <tr>
+                <th>Chord Type</th>
+                <th>Key</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let c of chords"> 
+                <td>
+                    <select [(ngModel)]="c.note" class="form-control">
+                        <option [ngValue]="n" *ngFor="let n of notes">{{ n.name }}</option>
+                    </select>
+                </td>
+                <td>
+                    <select [(ngModel)]="c.definition" class="form-control">
+                        <option [ngValue]="d" *ngFor="let d of chordDefinitions">{{ d.title }} - {{ d.description }}</option>
+                    </select>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm" (click)="removeChord(c)">delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngFor="let cc of compiledChords" class="mt-2">
+        <hr>
+        Chord notes: <div class="badge badge-light" *ngFor="let n of cc.notes">{{ n.name }}<span class="font-weight-light">{{ n.alternativeName }}</span></div>
+        <guitar [guitar]="guitar" [notes]="cc.notes" [showNotes]="showAllNotes" [reversed]="guitarsReversed"></guitar>
+    </div>
+</div>

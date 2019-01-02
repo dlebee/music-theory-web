@@ -13,10 +13,16 @@
                 <td [class.font-weight-bold]="n.isNatural">{{ n.isNatural ? 'yes' : 'no' }}</td>
                 <td>
                     <div class="button-group">
-                        <button class="btn btn-primary btn-sm" [routerLink]="'note/' + n.name">intervals</button>
+                        <button class="btn btn-primary btn-sm" [routerLink]="'note/' + n.name">details</button>
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
+
+    <ul>
+        <li *ngFor="let c of compiledChords | async">
+            {{ c | json }}
+        </li>
+    </ul>
 </div>

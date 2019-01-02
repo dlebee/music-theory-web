@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { IGuitar } from 'src/models/Guitar';
 import { IGuitarString } from 'src/models/guitar-string';
+import { INote } from 'src/models/note';
 
 @Component({
     selector: 'guitar',
@@ -13,8 +14,11 @@ export class GuitarComponent
     readonly firstFretWidth: number = 1.4312;
     readonly distanceBetweenFrets: number = 1.059463;
 
-    @Input() guitarScale: number = 25;  
+    @Input() necksSize: number = 19;  
     @Input() guitar: IGuitar;
+    @Input() showNotes: boolean = true;
+    @Input() notes: INote[];
+    @Input() reversed: boolean;
 
     constructor() {
         
@@ -34,7 +38,19 @@ export class GuitarComponent
             width /= this.distanceBetweenFrets;
         }
 
-        let percentage = width * 100 / this.guitarScale;
+        let percentage = width * 100 / this.necksSize;
         return `${percentage}%`;
+    }
+
+    get finalStrings() {
+        return this.reversed ? this.guitar.strings.slice().reverse() : this.guitar.strings;
+    }
+
+    isNoteAskedFor(note: INote) {
+        return this.notes && this.notes.indexOf(note) > -1;
+    }
+
+    showThisNote(note: INote) {
+        return this.showNotes ? true : this.isNoteAskedFor(note);
     }
 }
