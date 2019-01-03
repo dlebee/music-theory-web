@@ -21,7 +21,7 @@
     
     <ul class="list-group">
         <li class="list-group-item" *ngFor="let mc of matchedChords">
-            {{ mc.key.name }} {{mc.key.alternativeName}} {{ mc.title}}
+            {{ mc.key.name }} <span class="font-weight-light">{{mc.key.alternativeName}}</span> - {{ mc.title}}
         </li>
     </ul>
 </div>
