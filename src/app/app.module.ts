@@ -14,9 +14,10 @@ import { TestPageComponent } from 'src/pages/test/test-page.component';
 import { ChordsService } from 'src/services/chords-service';
 import { GuitarComponent } from 'src/components/guitar.component';
 import { ChordsPageComponent } from 'src/pages/chords/chords-page.component';
+import { ReverseChordPageComponent } from 'src/pages/reverse-chord/reverse-chord-page.component';
 
 const services = [NotesService, IntervalsService, NoteIntervalService, GuitarService, ChordsService];
-const components = [NotesPageComponent, NotePageComponent, TestPageComponent, GuitarComponent, ChordsPageComponent];
+const components = [NotesPageComponent, NotePageComponent, TestPageComponent, GuitarComponent, ChordsPageComponent, ReverseChordPageComponent];
 
 @NgModule({
   declarations: [

@@ -1,0 +1,28 @@
+
+<div class="container" style="max-width: 90%">
+    <h1>Reverse Find chords</h1>
+    <hr>
+    <p>Click the notes that are part of the wanted chord.</p>
+    <guitar [guitar]="guitar" (noteClicked)="noteClicked($event)" [notes]="selectedNotes"></guitar>
+
+    <hr>
+    <h5 class="mt-2">Selected notes:</h5>
+    <div>
+        <span *ngFor="let n of selectedNotes" class="badge badge-light mr-2" >{{ n.name }} <span class="font-weight-light">{{n.alternativeName}}</span></span>
+    </div>
+
+    <div class="mt-2 btn-group">
+        <button class="btn btn-primary btn-sm mt-2" (click)="searchPossibleChords()">Search for possible chords with matching notes</button>
+        <button class="btn btn-secondary btn-sm mt-2" (click)="reset()">Clear selected notes</button>
+    </div>
+    
+    
+    <hr>
+    
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let mc of matchedChords">
+            {{ mc.key.name }} {{mc.key.alternativeName}} {{ mc.title}}
+        </li>
+    </ul>
+</div>
+

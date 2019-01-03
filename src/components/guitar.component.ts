@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { IGuitar } from '../models/Guitar';
 import { IGuitarString } from '../models/guitar-string';
 import { INote } from '../models/note';
@@ -20,6 +20,8 @@ export class GuitarComponent
     @Input() notes: INote[];
     @Input() reversed: boolean;
 
+    @Output() noteClicked = new EventEmitter<INote>();
+
     constructor() {
         
     }
@@ -40,6 +42,10 @@ export class GuitarComponent
 
         let percentage = width * 100 / this.necksSize;
         return `${percentage}%`;
+    }
+
+    emitNoteClicked(note: INote) {
+        this.noteClicked.emit(note);
     }
 
     get finalStrings() {
