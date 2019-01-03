@@ -22,6 +22,12 @@ export class ChordsService
             semitones: [0, 3, 7],
         },
         {
+            type: ChordTypes.Fifth,
+            title: 'Power Chords (Fifth Chord)',
+            description: 'Often played by amplified guitars',
+            semitones: [0, 7]
+        },
+        {
             type: ChordTypes.Deminished,
             title: 'Diminished',
             description: 'Diminished Chords sound tense and unpleasant.',
@@ -74,7 +80,7 @@ export class ChordsService
             title: 'Major Eleventh',
             description: 'common in jazz, funk, and R&B',
             semitones: [0, 4, 7, 11, 14, 17]
-        }
+        },
     ];
 
     constructor(private notesService: NotesService, private noteIntervalService: NoteIntervalService) 
