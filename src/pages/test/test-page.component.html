@@ -1,4 +1,7 @@
 
 <div class="mt-2 container" style="width: 80%; max-width: none;">
-    <guitar [guitar]="guitar"></guitar>
+    <ng-container *ngIf="guitar">
+        <guitar [guitar]="guitar"></guitar>
+    </ng-container>
+    
 </div>

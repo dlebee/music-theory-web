@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { GuitarService } from 'src/services/guitar-service';
-import { ChordsService } from 'src/services/chords-service';
-import { IChord } from 'src/models/chord';
-import { INote } from 'src/models/note';
-import { NotesService } from 'src/services/notes.service';
-import { IGuitar } from 'src/models/Guitar';
+import { GuitarService } from '../..//services/guitar-service';
+import { ChordsService } from '../..//services/chords-service';
+import { IChord } from '../../models/chord';
+import { INote } from '../../models/note';
+import { NotesService } from '../../services/notes.service';
 import { zip } from 'rxjs';
+import { IGuitar } from '../../models/guitar';
 
 
 @Component({
@@ -14,9 +14,9 @@ import { zip } from 'rxjs';
 })
 export class ReverseChordPageComponent implements OnInit
 {
-    notes: INote[];
-    chords: IChord[];
-    guitar: IGuitar;
+    notes?: INote[];
+    chords?: IChord[];
+    guitar?: IGuitar;
     selectedNotes: INote[] = [];
     matchedChords: IChord[] = [];
 
@@ -46,6 +46,11 @@ export class ReverseChordPageComponent implements OnInit
     }
 
     searchPossibleChords() {
+
+        if (!this.chords) {
+            return;
+        }
+
         this.matchedChords = this.chords.filter(chord => {
             if (chord.notes.length == this.selectedNotes.length) {
                 let missingNotes = chord.notes.filter(t => this.selectedNotes.indexOf(t) === -1);

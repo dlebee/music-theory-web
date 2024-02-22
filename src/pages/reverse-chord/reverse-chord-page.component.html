@@ -1,5 +1,5 @@
 
-<div class="container" style="max-width: 90%">
+<div class="container" style="max-width: 90%" *ngIf="guitar">
     <h1>Reverse Find chords</h1>
     <hr>
     <p>Click the notes that are part of the wanted chord.</p>
@@ -8,7 +8,7 @@
     <hr>
     <h5 class="mt-2">Selected notes:</h5>
     <div>
-        <span *ngFor="let n of selectedNotes" class="badge badge-light mr-2" >{{ n.name }} <span class="font-weight-light">{{n.alternativeName}}</span></span>
+        <span *ngFor="let n of selectedNotes" class="badge bg-secondary mr-2" >{{ n.name }} <span>{{n.alternativeName}}</span></span>
     </div>
 
     <div class="mt-2 btn-group">

@@ -1,12 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { IGuitar } from 'src/models/Guitar';
-import { GuitarService } from 'src/services/guitar-service';
-import { INote } from 'src/models/note';
-import { ChordTypes, IChordDefinition, IChord } from 'src/models/chord';
-import { NotesService } from 'src/services/notes.service';
-import { ChordsService } from 'src/services/chords-service';
+import { GuitarService } from '../../services/guitar-service';
+import { INote } from '../../models/note';
+import { ChordTypes, IChordDefinition, IChord } from '../../models/chord';
+import { NotesService } from '../../services/notes.service';
+import { ChordsService } from '../../services/chords-service';
 import { zip, combineLatest } from 'rxjs';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { IGuitar } from "../../models/guitar";
 
 export interface IChordForm {
     note: INote;
@@ -19,10 +18,10 @@ export interface IChordForm {
 })
 export class ChordsPageComponent implements OnInit
 {
-    guitar: IGuitar;
+    guitar?: IGuitar;
     chords: IChordForm[] = [];
-    notes: INote[];
-    chordDefinitions: IChordDefinition[];
+    notes?: INote[];
+    chordDefinitions?: IChordDefinition[];
     compiledChords: IChord[] = [];
     guitarsReversed: boolean = false;
     showAllNotes: boolean = false;
@@ -33,18 +32,19 @@ export class ChordsPageComponent implements OnInit
 
     ngOnInit() {
 
-        combineLatest(this.guitarService.standardTunningGuitar(), this.notesService.getNotes(), this.chordsService.getDefinitions(), (guitar, notes, definitions) => ({guitar, notes, definitions}))
+        combineLatest([this.guitarService.standardTunningGuitar(), this.notesService.getNotes(), this.chordsService.getDefinitions()])
             .subscribe(a => {
-                this.guitar = a.guitar;
-                this.notes = a.notes;
-                this.chordDefinitions = a.definitions;
+                const [guitar, notes, chordDefinitions] = a;
+                this.guitar = guitar;
+                this.notes = notes;
+                this.chordDefinitions = chordDefinitions;
             });
     }
 
     newChord() {
         let chord = {
-            note: this.notes[0],
-            definition: this.chordDefinitions[0]
+            note: this.notes![0],
+            definition: this.chordDefinitions![0]
         };
         this.chords.push(chord);
     }

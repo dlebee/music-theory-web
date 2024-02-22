@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { IGuitar } from '../models/Guitar';
-import { IGuitarString } from '../models/guitar-string';
-import { INote } from '../models/note';
+import type { IGuitar } from '../models/guitar';
+import type { IGuitarString } from '../models/guitar-string';
+import type { INote } from '../models/note';
 
 @Component({
     selector: 'guitar',
@@ -15,10 +15,10 @@ export class GuitarComponent
     readonly distanceBetweenFrets: number = 1.059463;
 
     @Input() necksSize: number = 19;  
-    @Input() guitar: IGuitar;
+    @Input() guitar: IGuitar | null = null;
     @Input() showNotes: boolean = true;
-    @Input() notes: INote[];
-    @Input() reversed: boolean;
+    @Input() notes: INote[] = [];
+    @Input() reversed: boolean = false;
 
     @Output() noteClicked = new EventEmitter<INote>();
 
@@ -27,7 +27,7 @@ export class GuitarComponent
     }
 
     getStringWidth(s: IGuitarString) {
-        return 0.5 + (0.5 * this.guitar.strings.indexOf(s)) + 'px';
+        return 0.5 + (0.5 * this.guitar!.strings.indexOf(s)) + 'px';
     }
 
     getFretWidth(index: number) {
@@ -49,7 +49,7 @@ export class GuitarComponent
     }
 
     get finalStrings() {
-        return this.reversed ? this.guitar.strings.slice().reverse() : this.guitar.strings;
+        return this.reversed ? this.guitar!.strings.slice().reverse() : this.guitar!.strings;
     }
 
     isNoteAskedFor(note: INote) {

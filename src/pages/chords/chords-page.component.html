@@ -1,6 +1,6 @@
 
 
-<div class="container" style="max-width: 95%; margin-bottom: 40px;">
+<div class="container" style="max-width: 95%; margin-bottom: 40px;" *ngIf="guitar">
     <button class="btn btn-primary btn-sm mt-2" (click)="newChord()">Add a chord</button>
     <button class="btn btn-primary btn-sm mt-2" (click)="refreshChords()">Refresh chords</button>
     <div class="mt-1">I prefer my tabs reversed: <input type="checkbox" [(ngModel)]="guitarsReversed" /></div>
@@ -35,6 +35,6 @@
     <div *ngFor="let cc of compiledChords" class="mt-2">
         <hr>
         Chord notes: <div class="badge badge-light" *ngFor="let n of cc.notes">{{ n.name }}<span class="font-weight-light">{{ n.alternativeName }}</span></div>
-        <guitar [guitar]="guitar" [notes]="cc.notes" [showNotes]="showAllNotes" [reversed]="guitarsReversed"></guitar>
+        <guitar [guitar]="guitar!" [notes]="cc.notes" [showNotes]="showAllNotes" [reversed]="guitarsReversed"></guitar>
     </div>
 </div>

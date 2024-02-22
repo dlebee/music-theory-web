@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GuitarService } from 'src/services/guitar-service';
-import { IGuitar } from 'src/models/Guitar';
-import { ChordsService } from 'src/services/chords-service';
-import { NotesService } from 'src/services/notes.service';
-import { IChord } from 'src/models/chord';
+import { GuitarService } from '../../services/guitar-service';
+import { ChordsService } from '../../services/chords-service';
+import { NotesService } from '../../services/notes.service';
+import { IGuitar } from '../../models/guitar';
 
 @Component({
     selector: 'test-page',
@@ -11,7 +10,7 @@ import { IChord } from 'src/models/chord';
 })
 export class TestPageComponent implements OnInit
 {
-    guitar: IGuitar;
+    guitar?: IGuitar;
     
     constructor(private guitarService: GuitarService, private notesService: NotesService, private chordsService: ChordsService) {
 

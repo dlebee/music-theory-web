@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IInterval } from 'src/models/interval';
+import { IInterval } from '../models/interval';
 
 @Injectable()
 export class IntervalsService

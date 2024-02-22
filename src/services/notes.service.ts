@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { INote } from 'src/models/note';
+import { Observable, of, throwError } from 'rxjs';
+import { INote } from '../models/note';
 
 @Injectable()
 export class NotesService
 {
     getNote(noteName: string): Observable<INote> {
-        return Observable.create(o => {
-            let note = NotesService.notes.find(n => n.name == noteName || n.alternativeName == noteName);
-            if (note)
-                o.next(note);
-            else
-                o.error(`could not find a note called ${noteName}`);
-            o.complete();
-        });
+
+        let note = NotesService.notes.find(n => n.name == noteName || n.alternativeName == noteName);
+        if (note)
+            return of(note);
+
+        return throwError(() => `could not find a note called ${noteName}`);
     }
 
     getNotes(): Observable<INote[]> {

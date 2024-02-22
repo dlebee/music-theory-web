@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { NotesService } from './notes.service';
 import { NoteIntervalService } from './note-interval.service';
-import { INote } from 'src/models/note';
-import { Observable, zip, of } from 'rxjs';
-import { IChord, ChordTypes, IChordDefinition } from 'src/models/chord';
+import { INote } from '../models/note';
+import { Observable, zip, of, map, throwError, combineLatest } from 'rxjs';
+import { IChord, ChordTypes, IChordDefinition } from '../models/chord';
 
 @Injectable()
 export class ChordsService
@@ -101,51 +101,36 @@ export class ChordsService
     }
 
     allChords(note: INote) : Observable<IChord[]> {
-        return Observable.create(o => {
-            let observables = this.definitions.map(cd => this.chord(note, cd.type));
-            zip (... observables).subscribe(
-                res => {
-                    o.next(res);
-                    o.complete();
-                },
-                err => {
-                    o.error(err);
-                    o.complete();
-                }
-            );
-        });
+
+        let definitions = this.definitions.map(cd => this.chord(note, cd.type));
+        return zip(...definitions);
     }
 
     chord(note: INote, type: ChordTypes) : Observable<IChord> {
-        return Observable.create(o => {
-            let chordDefinition = this.definitions.find(t => t.type == type);
-            this.noteIntervalService.getNoteIntervals(note)
-                .subscribe(
-                    noteIntervals => {
 
+        let chordDefinition: IChordDefinition | undefined = this.definitions.find(t => t.type == type);
+        if (!chordDefinition) {
+            return throwError(() => `could not find chord definition for type ${type}`);
+        }
 
+        return this.noteIntervalService.getNoteIntervals(note).pipe(
+            map(noteIntervals => {
+                let notes = chordDefinition!.semitones.map(s => {
+                    let finalSemiTone = this.safeSemiTone(s);
+                    let noteInterval = noteIntervals.find(ni => ni.distanceInHalfTones == finalSemiTone);
+                    return noteInterval!.note;
+                });
 
-                        let notes = chordDefinition.semitones.map(s => {
-                            let finalSemiTone = this.safeSemiTone(s);
-                            let noteInterval = noteIntervals.find(ni => ni.distanceInHalfTones == finalSemiTone);
-                            return noteInterval.note;
-                        });
+                let chord: IChord = {
+                    key: note,
+                    type: type,
+                    title: chordDefinition!.title,
+                    notes: notes
+                };
 
-                        let nextResult: IChord = {
-                            key: note,
-                            type: type,
-                            title: chordDefinition.title,
-                            notes: notes
-                        };
-                        o.next(nextResult);
-                        o.complete();
-                    },
-                    err => {
-                        o.error(err);
-                        o.complete();
-                    }
-                );
-        });
+                return chord;
+            })
+        )
         
     }
     

@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NotesService } from 'src/services/notes.service';
-import { IntervalsService } from 'src/services/intervals.service';
-import { NotesPageComponent } from 'src/pages/notes/notes-page.component';
-import { NoteIntervalService } from 'src/services/note-interval.service';
-import { NotePageComponent } from 'src/pages/note/note-page.component';
-import { GuitarService } from 'src/services/guitar-service';
-import { TestPageComponent } from 'src/pages/test/test-page.component';
-import { ChordsService } from 'src/services/chords-service';
-import { GuitarComponent } from 'src/components/guitar.component';
-import { ChordsPageComponent } from 'src/pages/chords/chords-page.component';
-import { ReverseChordPageComponent } from 'src/pages/reverse-chord/reverse-chord-page.component';
+import { NotesService } from '../services/notes.service';
+import { IntervalsService } from '../services/intervals.service';
+import { NotesPageComponent } from '../pages/notes/notes-page.component';
+import { NoteIntervalService } from '../services/note-interval.service';
+import { NotePageComponent } from '../pages/note/note-page.component';
+import { GuitarService } from '../services/guitar-service';
+import { TestPageComponent } from '../pages/test/test-page.component';
+import { ChordsService } from '../services/chords-service';
+import { GuitarComponent } from '../components/guitar.component';
+import { ChordsPageComponent } from '../pages/chords/chords-page.component';
+import { ReverseChordPageComponent } from '../pages/reverse-chord/reverse-chord-page.component';
 
 const services = [NotesService, IntervalsService, NoteIntervalService, GuitarService, ChordsService];
 const components = [NotesPageComponent, NotePageComponent, TestPageComponent, GuitarComponent, ChordsPageComponent, ReverseChordPageComponent];

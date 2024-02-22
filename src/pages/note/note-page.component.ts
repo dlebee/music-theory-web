@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from '@angular/router';
-import { NotesService, } from 'src/services/notes.service';
-import { NoteIntervalService } from 'src/services/note-interval.service';
-import { INote } from 'src/models/note';
-import { INoteInterval } from 'src/models/note-interval';
-import { IChord } from 'src/models/chord';
-import { ChordsService } from 'src/services/chords-service';
+import { NotesService, } from '../../services/notes.service';
+import { NoteIntervalService } from '../../services/note-interval.service';
+import { INote } from '../../models/note';
+import { INoteInterval } from '../../models/note-interval';
+import { IChord } from '../../models/chord';
+import { ChordsService } from '../../services/chords-service';
 
 @Component({
     templateUrl: './note-page.component.html',
@@ -13,9 +13,9 @@ import { ChordsService } from 'src/services/chords-service';
 })
 export class NotePageComponent implements OnInit
 {
-    note: INote;
-    noteIntervals: INoteInterval[];
-    chords: IChord[];
+    note?: INote;
+    noteIntervals?: INoteInterval[];
+    chords?: IChord[];
 
     constructor(private route: ActivatedRoute,
         private noteService: NotesService,
@@ -29,9 +29,8 @@ export class NotePageComponent implements OnInit
     ngOnInit() {
         
         let noteName = this.route.snapshot.paramMap.get('note');
-        this.noteService.getNote(noteName)
-            .subscribe(
-                note => 
+        this.noteService.getNote(noteName!)
+            .subscribe(note => 
                 {
                     this.note = note;
                     this.noteIntervalService.getNoteIntervals(this.note)
@@ -40,8 +39,7 @@ export class NotePageComponent implements OnInit
                         });
 
                     this.chordsService.allChords(note).subscribe(chords => this.chords = chords);
-                },
-                err => alert(err)
+                }
             );
     }
 }
