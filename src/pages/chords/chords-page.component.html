@@ -34,7 +34,7 @@
 
     <div *ngFor="let cc of compiledChords" class="mt-2">
         <hr>
-        Chord notes: <div class="badge badge-light" *ngFor="let n of cc.notes">{{ n.name }}<span class="font-weight-light">{{ n.alternativeName }}</span></div>
+        Chord notes: <span *ngFor="let n of cc.notes"><span class="badge bg-secondary" >{{ n.name }}<span class="font-weight-light">{{ n.alternativeName }}</span></span>&nbsp;</span>
         <guitar [guitar]="guitar!" [notes]="cc.notes" [showNotes]="showAllNotes" [reversed]="guitarsReversed"></guitar>
     </div>
 </div>
