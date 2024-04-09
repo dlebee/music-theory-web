@@ -13,7 +13,7 @@ This is a music theory website built using TypeScript and Angular components. Th
 
 To get started with this project, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/dlebee/music-theory.git`
+1. Clone the repository: `git clone https://github.com/dlebee/music-theory-web.git`
 2. Install dependencies: `npm install`
 3. Run the development server: `ng serve`
 4. Open your browser and navigate to `http://localhost:4200` to view the website.
